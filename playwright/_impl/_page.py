@@ -257,9 +257,10 @@ class Page(ChannelOwner):
     def _on_download(self, params: Any) -> None:
         url = params["url"]
         suggested_filename = params["suggestedFilename"]
+        uuid = params["uuid"]
         artifact = cast(Artifact, from_channel(params["artifact"]))
         self.emit(
-            Page.Events.Download, Download(self, url, suggested_filename, artifact)
+            Page.Events.Download, Download(self, url, suggested_filename, uuid, artifact)
         )
 
     def _on_video(self, params: Any) -> None:

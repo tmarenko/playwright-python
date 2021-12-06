@@ -24,13 +24,14 @@ if TYPE_CHECKING:  # pragma: no cover
 
 class Download:
     def __init__(
-        self, page: "Page", url: str, suggested_filename: str, artifact: Artifact
+            self, page: "Page", url: str, suggested_filename: str, uuid: str, artifact: Artifact
     ) -> None:
         self._page = page
         self._loop = page._loop
         self._dispatcher_fiber = page._dispatcher_fiber
         self._url = url
         self._suggested_filename = suggested_filename
+        self._uuid = uuid
         self._artifact = artifact
 
     def __repr__(self) -> str:
@@ -47,6 +48,10 @@ class Download:
     @property
     def suggested_filename(self) -> str:
         return self._suggested_filename
+
+    @property
+    def uuid(self) -> str:
+        return self.uuid
 
     async def delete(self) -> None:
         await self._artifact.delete()

@@ -149,6 +149,7 @@ class BrowserType(ChannelOwner):
         endpointURL: str,
         timeout: float = None,
         slow_mo: float = None,
+        downloadsPath: str = None,
         headers: Dict[str, str] = None,
     ) -> Browser:
         params = locals_to_params(locals())
